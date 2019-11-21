@@ -33,5 +33,6 @@ dependencies {
 
         // this one is used for my project (actually I have other related
         // dependencies but when I added this one, the application crashed).
+        "org.springframework.cloud:spring-cloud-starter-kubernetes",
         "org.springframework.cloud:spring-cloud-starter-kubernetes-ribbon")
 }
