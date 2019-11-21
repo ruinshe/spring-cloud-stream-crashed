@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: spring-cloud-stream-crashed
+
+spring.cloud.bus.enabled: true

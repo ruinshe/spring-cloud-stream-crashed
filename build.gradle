@@ -1,0 +1,37 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'cn.ruinshe'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenLocal()
+    maven { url = "${privateMavenRepository}/repository/maven-public/" }
+    maven { url = "https://maven.aliyun.com/repository/public" }
+    jcenter()
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+    set('springCloudVersion', "Hoxton.RC2")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    compile(
+        "org.springframework.cloud:spring-cloud-starter-bus-amqp",
+
+        // this one is used for my project (actually I have other related
+        // dependencies but when I added this one, the application crashed).
+        "org.springframework.cloud:spring-cloud-starter-kubernetes-ribbon")
+}
