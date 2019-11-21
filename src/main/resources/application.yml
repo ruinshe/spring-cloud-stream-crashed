@@ -1,5 +1,8 @@
 spring:
   application:
     name: spring-cloud-stream-crashed
+  cloud.bus.enabled: true
 
-spring.cloud.bus.enabled: true
+logging:
+  level:
+    root: DEBUG
