@@ -1,6 +1,6 @@
 Some investigation about the sample project:
 
-### About the dependencies=
+### About the dependencies
 The breakage is invoked when I add `org.springframework.cloud:spring-cloud-kubernetes-discovery`
 to my `build.gradle`, on the other hand, I think the root caused is exactly the package itself and
 not the dependencies of it, because I exclude all the dependencies of it and only keep
