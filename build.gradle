@@ -1,12 +1,13 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.1.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'java'
+    id "org.springframework.boot" version "2.2.1.RELEASE"
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id "java"
+    id "project-report"
 }
 
-group = 'cn.ruinshe'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+group = "cn.ruinshe"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "1.8"
 
 repositories {
     mavenLocal()
@@ -14,11 +15,11 @@ repositories {
     maven { url = "https://maven.aliyun.com/repository/public" }
     jcenter()
     mavenCentral()
-    maven { url 'https://repo.spring.io/milestone' }
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 ext {
-    set('springCloudVersion', "Hoxton.RC2")
+    set("springCloudVersion", "Hoxton.RC2")
 }
 
 dependencyManagement {
@@ -28,11 +29,19 @@ dependencyManagement {
 }
 
 dependencies {
-    compile(
-        "org.springframework.cloud:spring-cloud-starter-bus-amqp",
+    compile("org.springframework.cloud:spring-cloud-starter-bus-amqp")
 
-        // this one is used for my project (actually I have other related
-        // dependencies but when I added this one, the application crashed).
-        "org.springframework.cloud:spring-cloud-starter-kubernetes",
-        "org.springframework.cloud:spring-cloud-starter-kubernetes-ribbon")
+    // These dependencies are used for my project (actually I have other related
+    // dependencies but when I added this one, the application crashed).
+    compile("io.fabric8:kubernetes-client")
+    compile("org.springframework.cloud:spring-cloud-kubernetes-core") {
+        exclude module: "*"
+    }
+
+    // When I comment out this compile block, the application starts normally.
+    compile("org.springframework.cloud:spring-cloud-kubernetes-discovery") {
+        exclude module: "spring-cloud-kubernetes-core"
+        exclude module: "spring-cloud-context"
+        exclude module: "spring-cloud-commons"
+    }
 }

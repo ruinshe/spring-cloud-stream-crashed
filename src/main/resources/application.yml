@@ -5,7 +5,10 @@ spring:
     bus:
       enabled: true
       id: ${spring.application.name:application}:${vcap.application.instance_id:0}
-
+  output:
+    ansi:
+      enabled: ALWAYS
 logging:
   level:
     com.ruinshe: DEBUG
+    org.springframework: DEBUG
