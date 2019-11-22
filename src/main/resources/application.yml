@@ -1,8 +1,11 @@
 spring:
   application:
     name: spring-cloud-stream-crashed
-  cloud.bus.enabled: true
+  cloud:
+    bus:
+      enabled: true
+      id: ${spring.application.name:application}:${vcap.application.instance_id:0}
 
 logging:
   level:
-    root: DEBUG
+    com.ruinshe: DEBUG
