@@ -28,3 +28,5 @@ When I debug on the issue, I figure out that the method
  ```
 java.util.function.Function<io.fabric8.kubernetes.client.KubernetesClient, io.fabric8.kubernetes.client.dsl.FilterWatchListDeletable<io.fabric8.kubernetes.api.model.Service, io.fabric8.kubernetes.api.model.ServiceList, java.lang.Boolean, io.fabric8.kubernetes.client.Watch, io.fabric8.kubernetes.client.Watcher<io.fabric8.kubernetes.api.model.Service>>>
 ```
+
+And I found a class named `KubernetesClientServicesFunction` in that package which causes the bug.
